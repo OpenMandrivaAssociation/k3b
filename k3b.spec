@@ -4,16 +4,16 @@
 
 %define k3b_18n_version 1.0.5
 
-Name: kde3-k3b
+Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
 Release: %mkrel 3
 License: GPL
+Epoch: 2
 Group: Archiving/Cd burning
 Source0: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-%{version}.tar.bz2
 Source1: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-%{k3b_18n_version}.tar.bz2
 URL: http://www.k3b.org/
-Provides: k3b = %version-%release
 Requires: cdrecord 
 Requires: mkisofs 
 Requires: cdrdao 
@@ -24,6 +24,7 @@ Requires: kdebase-progs
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libcdda-devel
 BuildRequires: kdelibs-devel 
+BuildRequires: kdemultimedia-devel
 BuildRequires: jpeg-devel
 BuildRequires: png-devel
 BuildRequires: X11-devel
@@ -49,7 +50,6 @@ BuildRequires: GL-devel
 BuildRequires: hal-devel
 BuildRequires: libdvdread-devel
 BuildRequires: desktop-file-utils
-Obsoletes:     k3b < 1.95
 Requires:      %libname = %version-%release
 
 %description
@@ -153,9 +153,6 @@ cd -
 
 cd %_builddir/k3b/k3b-i18n-%{k3b_18n_version}
 make -f admin/Makefile.common
-CFLAGS="${CFLAGS} %optflags" 
-CXXFLAGS="${CXXFLAGS} %optflags" 
-export CFLAGS CXXFLAGS 
 %configure_kde3
 
 # Necessary to regenerate po file !!!! Otherwise it's not generated
