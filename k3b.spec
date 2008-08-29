@@ -7,7 +7,7 @@
 Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
-Release: %mkrel 6
+Release: %mkrel 7
 License: GPL
 Epoch: 3
 Group: Archiving/Cd burning
@@ -22,6 +22,8 @@ Requires: sox
 Requires: vcdimager 
 Requires: normalize
 Requires: kdebase-progs
+Obsoletes: kde3-k3b
+Obsoletes: kde4-k3b
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libcdda-devel
 BuildRequires: kdelibs-devel 
