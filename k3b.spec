@@ -13,6 +13,7 @@ Epoch: 2
 Group: Archiving/Cd burning
 Source0: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-%{version}.tar.bz2
 Source1: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-%{k3b_18n_version}.tar.bz2
+Patch0: k3b-1.0.5-ffmpeg-headers.patch
 URL: http://www.k3b.org/
 Requires: cdrecord 
 Requires: mkisofs 
@@ -24,7 +25,6 @@ Requires: kdebase-progs
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libcdda-devel
 BuildRequires: kdelibs-devel 
-BuildRequires: kdemultimedia-devel
 BuildRequires: jpeg-devel
 BuildRequires: png-devel
 BuildRequires: X11-devel
@@ -139,11 +139,15 @@ Development libraries from %name
 %setup -q -c -n k3b
 %setup -q -T -D -c -a 1 -n k3b
 
+cd %_builddir/k3b/k3b-%version
+%patch0 -p1
+
 %build
 export QTDIR=%qt3dir
 cd %_builddir/k3b/k3b-%version
 
 %configure_kde3 \
+   --enable-ffmpeg-all-codecs \
    --without-cdrecord-suid-root \
    --with-k3bsetup=no 
 
