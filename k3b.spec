@@ -7,9 +7,9 @@
 Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
-Release: %mkrel 3
+Release: %mkrel 5
 License: GPL
-Epoch: 2
+Epoch: 3
 Group: Archiving/Cd burning
 Source0: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-%{version}.tar.bz2
 Source1: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-%{k3b_18n_version}.tar.bz2
