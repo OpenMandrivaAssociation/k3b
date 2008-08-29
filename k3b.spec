@@ -7,7 +7,7 @@
 Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
-Release: %mkrel 5
+Release: %mkrel 6
 License: GPL
 Epoch: 3
 Group: Archiving/Cd burning
@@ -50,7 +50,6 @@ BuildRequires: GL-devel
 BuildRequires: hal-devel
 BuildRequires: libdvdread-devel
 BuildRequires: desktop-file-utils
-Requires:      %libname = %version-%release
 
 %description
 K3b is CD-writing software which intends to be feature-rich and 
@@ -91,7 +90,7 @@ programs and configuring devices.
 %package -n	%libname
 Group: 		System/Libraries
 Summary: 	Libraries for %name
-Provides: 	libk3b = %version-%release
+Provides: 	libk3b = %epoch:%version-%release
 Conflicts: 	k3b <= 0.9-3mdk
 Obsoletes:	%oldlibname
 Obsoletes:	%mklibname k3b 3 < %version-%release
@@ -119,8 +118,8 @@ The libraries from %name package
 %package devel
 Group: Development/Other
 Summary: Libraries for %name
-Requires: %libname = %version-%release
-Provides: kde3-k3b-devel = %{version}-%{release}
+Requires: %libname = %epoch:%version-%release
+Provides: kde3-k3b-devel = %epoch:%{version}-%{release}
 Obsoletes: %oldlibname-devel
 Obsoletes: %libname-devel
 Conflicts: 	k3b <= 0.9-3mdk
