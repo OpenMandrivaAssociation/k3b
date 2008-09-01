@@ -7,7 +7,7 @@
 Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
-Release: %mkrel 7
+Release: %mkrel 8
 License: GPL
 Epoch: 3
 Group: Archiving/Cd burning
