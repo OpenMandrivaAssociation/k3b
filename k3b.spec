@@ -7,12 +7,13 @@
 Name: k3b
 Summary: CD-Burner for KDE
 Version: 1.0.5
-Release: %mkrel 8
+Release: %mkrel 9
 License: GPL
 Epoch: 3
 Group: Archiving/Cd burning
 Source0: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-%{version}.tar.bz2
 Source1: http://jaist.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-%{k3b_18n_version}.tar.bz2
+Source2: k3b.desktop
 Patch0: k3b-1.0.5-ffmpeg-headers.patch
 URL: http://www.k3b.org/
 Requires: cdrecord 
@@ -178,6 +179,9 @@ cd -
 cd %_builddir/k3b/k3b-i18n-%{k3b_18n_version}
 %makeinstall_std
 cd -
+
+# Translation tem modified desktop file
+cp -f %SOURCE2  %buildroot/%_kde3_datadir/applications/kde/
 
 install -d %buildroot/%_kde3_datadir/applications/kde/
 desktop-file-install --vendor='' \
