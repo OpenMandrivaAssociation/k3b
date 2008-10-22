@@ -1,5 +1,5 @@
 %define version  1.95
-%define release  %mkrel 0.%revision.1
+%define release  %mkrel 0.%revision.2
 %define revision 870331
 
 Name:            k3b
@@ -32,6 +32,8 @@ Requires:        cdrdao
 Requires:        sox
 Requires:        vcdimager
 Requires:        normalize
+
+Requires:        kdebase4-runtime >= 1:4.1.70
 
 Obsoletes:       kde4-k3b < 1.95-0.766860.2
 Provides:        kde4-k3b
