@@ -1,5 +1,5 @@
 %define version  1.95
-%define release  %mkrel 0.%revision.2
+%define release  %mkrel 0.%revision.3
 %define revision 870331
 
 Name:            k3b
@@ -151,8 +151,8 @@ KDE 4 core library.
 %package devel
 Group: Development/KDE and Qt
 Summary: Development libraries from %name
-Requires: %libk3bdevice = %version-%release
-Requires: %libk3b = %version-%release
+Requires: %libk3bdevice = %epoch:%version-%release
+Requires: %libk3b = %epoch:%version-%release
 
 Obsoletes:       kde4-k3b-devel < 1.95-0.766860.2
 Provides:        kde4-k3b-devel
@@ -181,7 +181,6 @@ Development libraries from %name
 cd build
 rm -rf %buildroot
 %{makeinstall_std}
-
 
 %clean
 rm -rf %buildroot
