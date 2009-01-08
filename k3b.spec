@@ -32,7 +32,7 @@ Requires:        cdrdao
 Requires:        sox
 Requires:        vcdimager
 Requires:        normalize
-
+Requires:        dvd+rw-tools
 Requires:        kdebase4-runtime >= 1:4.1.70
 
 Obsoletes:       kde4-k3b < 1.95-0.766860.2
