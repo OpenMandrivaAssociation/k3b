@@ -1,6 +1,6 @@
 %define version  1.95
-%define release  %mkrel 0.%revision.3
-%define revision 870331
+%define release  %mkrel 0.%revision.1
+%define revision 916691
 
 Name:            k3b
 Version:         %{version}
@@ -11,7 +11,6 @@ Url:             http://www.k3b.org/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.%revision.tar.bz2
-Patch1:          k3b-1.95-ffmpeg-headers.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -72,23 +71,8 @@ programs and configuring devices.
 %_kde_libdir/kde4/k3blibsndfiledecoder.so
 %_kde_datadir/applications/kde4/k3b.desktop
 %_kde_libdir/kde4/k3bmpcdecoder.desktop
-%dir %_kde_appsdir/k3b
-%dir %_kde_appsdir/k3b/cdi
-%_kde_appsdir/k3b/cdi/cdi_imag.rtf
-%_kde_appsdir/k3b/cdi/cdi_text.fnt
-%_kde_appsdir/k3b/cdi/cdi_vcd.app
-%_kde_appsdir/k3b/cdi/cdi_vcd.cfg
-%_kde_appsdir/k3b/cdi/icdia.htm
-%_kde_appsdir/k3b/cdi/vcd_on_cdi_41.pdf
-%dir %_kde_appsdir/k3b/extra
-%_kde_appsdir/k3b/extra/*.mpg
-%_kde_appsdir/k3b/icons
-%_kde_appsdir/k3b/k3b.notifyrc
-%_kde_appsdir/k3b/k3bui.rc
-%_kde_appsdir/k3b/pics
-%dir %_kde_appsdir/k3b/servicemenus
-%_kde_appsdir/k3b/servicemenus/*.desktop
-%_kde_appsdir/k3b/tips
+%_kde_appsdir/k3b
+%_kde_appsdir/k3b
 %_kde_appsdir/konqsidebartng/virtual_folders/services/videodvd.desktop
 %_kde_iconsdir/hicolor/*/apps/k3b.png
 %_kde_datadir/kde4/services/ServiceMenus/*.desktop
@@ -171,7 +155,6 @@ Development libraries from %name
 
 %prep
 %setup -q -n %name-%version
-%patch1 -p1 -b .ffmpeg_headers
 
 %build
 %cmake_kde4 
