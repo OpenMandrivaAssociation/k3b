@@ -72,7 +72,6 @@ programs and configuring devices.
 %_kde_datadir/applications/kde4/k3b.desktop
 %_kde_libdir/kde4/k3bmpcdecoder.desktop
 %_kde_appsdir/k3b
-%_kde_appsdir/k3b
 %_kde_appsdir/konqsidebartng/virtual_folders/services/videodvd.desktop
 %_kde_iconsdir/hicolor/*/apps/k3b.png
 %_kde_datadir/kde4/services/ServiceMenus/*.desktop
