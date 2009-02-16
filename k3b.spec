@@ -2,6 +2,8 @@
 %define release  %mkrel 0.%revision.1
 %define revision 916691
 
+%define subrel 1
+
 Name:            k3b
 Version:         %{version}
 Release:         %{release}
@@ -11,6 +13,9 @@ Url:             http://www.k3b.org/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.%revision.tar.bz2
+Source1:         k3b-19.5-po-files.tar.bz2 
+Source2:         k3b_write_iso_image.desktop
+Patch1:          k3b-1.95-add-po.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -51,7 +56,8 @@ programs and configuring devices.
 %{clean_desktop_database}
 %clean_icon_cache hicolor
 
-%files
+%files 
+#-f %{name}.lang
 %defattr(-,root,root)
 %_kde_bindir/k3b
 %_kde_bindir/k3bsetup
@@ -80,7 +86,7 @@ programs and configuring devices.
 %_kde_datadir/kde4/services/videodvd.protocol
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
-
+%_kde_datadir/locale/*/LC_MESSAGES/*
 #------------------------------------------------
 
 %define libk3b %mklibname k3b 4
@@ -153,7 +159,8 @@ Development libraries from %name
 #------------------------------------------------
 
 %prep
-%setup -q -n %name-%version
+%setup -q -n %name-%version -a 1
+%patch1 -p1
 
 %build
 %cmake_kde4 
@@ -163,6 +170,9 @@ Development libraries from %name
 cd build
 rm -rf %buildroot
 %{makeinstall_std}
+%find_lang k3b k3b k3bsetup libk3b libk3bdevice
+
+cp -f %SOURCE2 %buildroot%_kde_datadir/kde4/services/ServiceMenus/
 
 %clean
 rm -rf %buildroot
