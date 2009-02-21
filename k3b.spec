@@ -60,23 +60,20 @@ programs and configuring devices.
 %_kde_bindir/k3b
 %_kde_bindir/k3bsetup
 %_kde_libdir/kde4/kcm_k3bsetup2.so
-%_kde_libdir/kde4/kcm_k3bexternalencoder.so
 %_kde_libdir/kde4/kcm_k3boggvorbisencoder.so
 %_kde_libdir/kde4/kio_videodvd.so
-%_kde_libdir/kde4/k3bexternalencoder.so
 %_kde_libdir/kde4/k3bffmpegdecoder.so
 %_kde_libdir/kde4/k3bflacdecoder.so
 %_kde_libdir/kde4/k3bmaddecoder.so
 %_kde_libdir/kde4/k3boggvorbisdecoder.so
 %_kde_libdir/kde4/k3boggvorbisencoder.so
-%_kde_libdir/kde4/k3bsoxencoder.so
-%_kde_libdir/kde4/k3bwavedecoder.so
 %_kde_libdir/kde4/k3bmpcdecoder.so
 %_kde_libdir/kde4/k3blibsndfiledecoder.so
 %_kde_datadir/applications/kde4/k3b.desktop
 %_kde_libdir/kde4/k3bmpcdecoder.desktop
 %_kde_appsdir/k3b
 %_kde_appsdir/konqsidebartng/virtual_folders/services/videodvd.desktop
+%_kde_appsdir/solid/actions/*
 %_kde_iconsdir/hicolor/*/apps/k3b.png
 %_kde_datadir/kde4/services/ServiceMenus/*.desktop
 %_kde_datadir/kde4/services/*.desktop
@@ -85,6 +82,7 @@ programs and configuring devices.
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
 %_kde_datadir/locale/*/LC_MESSAGES/*
+
 #------------------------------------------------
 
 %define libk3b %mklibname k3b 4
