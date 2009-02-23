@@ -1,6 +1,6 @@
 %define version  1.95
 %define release  %mkrel 0.%revision.1
-%define revision 928735
+%define revision 930353
 
 Name:            k3b
 Version:         %{version}
@@ -69,8 +69,13 @@ programs and configuring devices.
 %_kde_libdir/kde4/k3boggvorbisencoder.so
 %_kde_libdir/kde4/k3bmpcdecoder.so
 %_kde_libdir/kde4/k3blibsndfiledecoder.so
+%_kde_libdir/kde4/k3baudiometainforenamerplugin.so
+%_kde_libdir/kde4/k3baudioprojectcddbplugin.so
+%_kde_libdir/kde4/k3bexternalencoder.so
+%_kde_libdir/kde4/k3bsoxencoder.so
+%_kde_libdir/kde4/k3bwavedecoder.so
+%_kde_libdir/kde4/kcm_k3bexternalencoder.so
 %_kde_datadir/applications/kde4/k3b.desktop
-%_kde_libdir/kde4/k3bmpcdecoder.desktop
 %_kde_appsdir/k3b
 %_kde_appsdir/konqsidebartng/virtual_folders/services/videodvd.desktop
 %_kde_appsdir/solid/actions/*
