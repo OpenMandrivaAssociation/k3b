@@ -28,6 +28,7 @@ BuildRequires:   libmpcdec-devel
 BuildRequires:   sndfile-devel
 BuildRequires:   taglib-devel
 BuildRequires:   doxygen
+BuildRequires:   libsamplerate-devel
 Requires:        cdrecord
 Requires:        mkisofs
 Requires:        cdrdao
