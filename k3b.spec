@@ -1,5 +1,5 @@
 %define version  1.95
-%define release  %mkrel 0.%revision.1
+%define release  %mkrel 0.%revision.2
 %define revision 944687
 
 Name:            k3b
@@ -15,6 +15,7 @@ Source1:         k3b-19.5-po-files.tar.bz2
 Source2:         k3b_write_iso_image.desktop
 Patch1:          k3b-1.95-add-po.patch
 Patch2:          k3b-1.95-fix-french-translation.patch
+Patch3:          k3b-1.95-fix-close-window.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -165,6 +166,7 @@ Development libraries from %name
 %setup -q -n %name-%version -a 1
 %patch1 -p1
 %patch2 -p0
+%patch3 -p0
 
 %build
 %cmake_kde4 
