@@ -165,7 +165,7 @@ Development libraries from %name
 %prep
 %setup -q -n %name-%version -a 1
 %patch1 -p1
-%patch2 -p0
+#%patch2 -p0
 %patch3 -p0
 
 %build
