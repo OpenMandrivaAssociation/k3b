@@ -1,5 +1,5 @@
 %define version  1.95
-%define release  %mkrel 0.%revision.2
+%define release  %mkrel 0.%revision.3
 %define revision 944687
 
 Name:            k3b
