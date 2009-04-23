@@ -1,16 +1,16 @@
-%define version  1.95
+%define version  1.65.0
 %define release  %mkrel 0.%revision.1
-%define revision 948770
+%define revision alpha1
 
 Name:            k3b
 Version:         %{version}
 Release:         %{release}
-Epoch:           3
+Epoch:           4
 License:         GPLv2+
 Url:             http://www.k3b.org/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.%revision.tar.bz2
+Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version%revision.tar.bz2
 Source1:         k3b-19.5-po-files.tar.bz2 
 Source2:         k3b_write_iso_image.desktop
 Patch1:          k3b-1.95-add-po.patch
@@ -60,8 +60,8 @@ programs and configuring devices.
 #-f %{name}.lang
 %defattr(-,root,root)
 %_kde_bindir/k3b
-%_kde_bindir/k3bsetup
-%_kde_libdir/kde4/kcm_k3bsetup2.so
+#%_kde_bindir/k3bsetup
+#%_kde_libdir/kde4/kcm_k3bsetup2.so
 %_kde_libdir/kde4/kcm_k3boggvorbisencoder.so
 %_kde_libdir/kde4/kio_videodvd.so
 %_kde_libdir/kde4/k3bffmpegdecoder.so
@@ -167,7 +167,7 @@ Development libraries from %name
 #%patch2 -p0
 
 %build
-%cmake_kde4 
+%cmake_kde4  -DK3B_BUILD_K3BSETUP=OFF
 %make
 
 %install
