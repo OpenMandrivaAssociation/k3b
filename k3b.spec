@@ -1,5 +1,5 @@
 %define version  1.65.0
-%define release  %mkrel 0.%revision.2
+%define release  %mkrel 0.%revision.3
 %define revision alpha1
 
 Name:            k3b
@@ -30,6 +30,7 @@ BuildRequires:   sndfile-devel
 BuildRequires:   taglib-devel
 BuildRequires:   doxygen
 BuildRequires:   libsamplerate-devel
+BuildRequires:   polkit-qt-devel
 Requires:        cdrecord
 Requires:        mkisofs
 Requires:        cdrdao
@@ -60,8 +61,8 @@ programs and configuring devices.
 #-f %{name}.lang
 %defattr(-,root,root)
 %_kde_bindir/k3b
-#%_kde_bindir/k3bsetup
-#%_kde_libdir/kde4/kcm_k3bsetup2.so
+%_kde_bindir/k3bsetup
+%_kde_libdir/kde4/kcm_k3bsetup2.so
 %_kde_libdir/kde4/kcm_k3boggvorbisencoder.so
 %_kde_libdir/kde4/kio_videodvd.so
 %_kde_libdir/kde4/k3bffmpegdecoder.so
@@ -89,6 +90,11 @@ programs and configuring devices.
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
 %_kde_datadir/locale/*/LC_MESSAGES/*
+%_sysconfdir/dbus-1/system.d/org.k3b.setup.conf
+%_kde_libdir/kde4/libexec/k3bsetup_worker
+%_kde_datadir/PolicyKit/policy/org.k3b.setup.policy
+%_kde_datadir/dbus-1/interfaces/org.k3b.setup.xml
+%_kde_datadir/dbus-1/system-services/org.k3b.setup.service
 
 #------------------------------------------------
 
@@ -101,13 +107,6 @@ Conflicts: %{_lib}k3b3 < 3:1.0.4-3
 
 %description -n %libk3b
 KDE 4 core library.
-
-%if %mdkversion < 200900
-%post -n %libk3b -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libk3b -p /sbin/ldconfig
-%endif
 
 %files -n %libk3b
 %defattr(-,root,root)
@@ -125,17 +124,9 @@ Group: System/Libraries
 %description -n %libk3bdevice
 KDE 4 core library.
 
-%if %mdkversion < 200900
-%post -n %libk3bdevice -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libk3bdevice -p /sbin/ldconfig
-%endif
-
 %files -n %libk3bdevice
 %defattr(-,root,root)
 %_kde_libdir/libk3bdevice.so.*
-
 
 #------------------------------------------------
 
@@ -167,7 +158,7 @@ Development libraries from %name
 #%patch2 -p0
 
 %build
-%cmake_kde4  -DK3B_BUILD_K3BSETUP=OFF
+%cmake_kde4
 %make
 
 %install
