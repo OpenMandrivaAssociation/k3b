@@ -1,6 +1,6 @@
-%define version  1.65.0
-%define release  %mkrel 0.%revision.3
-%define revision alpha1
+%define version  1.66.0
+%define release  %mkrel 0.%revision.1
+%define revision alpha2
 
 Name:            k3b
 Version:         %{version}
@@ -12,7 +12,6 @@ Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version%revision.tar.bz2
 Source1:         k3b-19.5-po-files.tar.bz2 
-Source2:         k3b_write_iso_image.desktop
 Patch1:          k3b-1.95-add-po.patch
 Patch2:          k3b-1.95-fix-french-translation.patch
 Summary:         CD-Burner for KDE4
@@ -57,12 +56,11 @@ programs and configuring devices.
 %{clean_desktop_database}
 %clean_icon_cache hicolor
 
-%files 
-#-f %{name}.lang
+%files -f %{name}.lang
 %defattr(-,root,root)
 %_kde_bindir/k3b
 %_kde_bindir/k3bsetup
-%_kde_libdir/kde4/kcm_k3bsetup2.so
+%_kde_libdir/kde4/kcm_k3bsetup.so
 %_kde_libdir/kde4/kcm_k3boggvorbisencoder.so
 %_kde_libdir/kde4/kio_videodvd.so
 %_kde_libdir/kde4/k3bffmpegdecoder.so
@@ -89,7 +87,6 @@ programs and configuring devices.
 %_kde_datadir/kde4/services/videodvd.protocol
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
-%_kde_datadir/locale/*/LC_MESSAGES/*
 %_sysconfdir/dbus-1/system.d/org.k3b.setup.conf
 %_kde_libdir/kde4/libexec/k3bsetup_worker
 %_kde_datadir/PolicyKit/policy/org.k3b.setup.policy
@@ -98,38 +95,39 @@ programs and configuring devices.
 
 #------------------------------------------------
 
-%define libk3b %mklibname k3b 4
+%define libk3b_major 6
+%define libk3b %mklibname k3b %libk3b_major
 
 %package -n %libk3b
 Summary: KDE 4 core library
 Group: System/Libraries
 Conflicts: %{_lib}k3b3 < 3:1.0.4-3
+Obsoletes: %{_lib}k3b4 < 4:1.66.0
 
 %description -n %libk3b
 KDE 4 core library.
 
 %files -n %libk3b
 %defattr(-,root,root)
-%_kde_libdir/libk3b.so.*
+%_kde_libdir/libk3b.so.%{libk3b_major}*
 
 #------------------------------------------------
 
-%define libk3bdevice %mklibname k3bdevice 6
+%define libk3bdevice_major 6
+%define libk3bdevice %mklibname k3bdevice %libk3bdevice_major
 
 %package -n %libk3bdevice
 Summary: KDE 4 core library
 Group: System/Libraries
-
 
 %description -n %libk3bdevice
 KDE 4 core library.
 
 %files -n %libk3bdevice
 %defattr(-,root,root)
-%_kde_libdir/libk3bdevice.so.*
+%_kde_libdir/libk3bdevice.so.%{libk3bdevice_major}*
 
 #------------------------------------------------
-
 
 %package devel
 Group: Development/KDE and Qt
@@ -140,7 +138,6 @@ Requires: %libk3b = %epoch:%version-%release
 Obsoletes:       kde4-k3b-devel < 1.95-0.766860.2
 Provides:        kde4-k3b-devel
 Conflicts:       k3b < 3:1.0.4-4mdv
-
 
 %description devel
 Development libraries from %name
@@ -162,12 +159,9 @@ Development libraries from %name
 %make
 
 %install
-cd build
 rm -rf %buildroot
-%{makeinstall_std}
+%{makeinstall_std} -C build
 %find_lang k3b k3b k3bsetup libk3b libk3bdevice
-
-cp -f %SOURCE2 %buildroot%_kde_datadir/kde4/services/ServiceMenus/
 
 %clean
 rm -rf %buildroot
