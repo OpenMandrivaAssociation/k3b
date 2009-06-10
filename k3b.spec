@@ -1,5 +1,5 @@
 %define version  1.66.0
-%define release  %mkrel 0.%revision.1
+%define release  %mkrel 0.%revision.2
 %define revision alpha2
 
 Name:            k3b
@@ -14,6 +14,7 @@ Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%versio
 Source1:         k3b-19.5-po-files.tar.bz2 
 Patch1:          k3b-1.95-add-po.patch
 Patch2:          k3b-1.95-fix-french-translation.patch
+Patch3:          k3b-1.66-always-use-growisofs-for-dvd.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -153,6 +154,7 @@ Development libraries from %name
 %setup -q -n %name-%version -a 1
 %patch1 -p1
 #%patch2 -p0
+%patch3 -p1
 
 %build
 %cmake_kde4
