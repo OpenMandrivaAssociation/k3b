@@ -13,7 +13,6 @@ BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version%revision.tar.bz2
 Source1:         k3b-19.5-po-files.tar.bz2 
 Patch1:          k3b-1.95-add-po.patch
-Patch2:          k3b-1.95-fix-french-translation.patch
 Patch3:          k3b-1.66-always-use-growisofs-for-dvd.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
@@ -102,7 +101,6 @@ programs and configuring devices.
 %package -n %libk3b
 Summary: KDE 4 core library
 Group: System/Libraries
-Conflicts: %{_lib}k3b3 < 3:1.0.4-3
 Obsoletes: %{_lib}k3b4 < 4:1.66.0
 
 %description -n %libk3b
@@ -153,7 +151,6 @@ Development libraries from %name
 %prep
 %setup -q -n %name-%version -a 1
 %patch1 -p1
-#%patch2 -p0
 %patch3 -p1
 
 %build
