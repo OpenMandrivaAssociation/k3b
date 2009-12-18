@@ -1,5 +1,5 @@
 %define version  1.69.0
-%define release  %mkrel 0.%revision.1
+%define release  %mkrel 0.%revision.2
 %define revision alpha4
 
 Name:            k3b
@@ -102,7 +102,7 @@ programs and configuring devices.
 %package -n %libk3b
 Summary: KDE 4 core library
 Group: System/Libraries
-Obsoletes: %{_lib}k3b4 < 4:1.66.0
+Obsoletes: %{_lib}k3b4 < 4:1.66.0-1mdv
 
 %description -n %libk3b
 KDE 4 core library.
