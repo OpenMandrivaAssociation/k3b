@@ -1,6 +1,6 @@
-%define version  1.69.0
-%define release  %mkrel 0.%revision.2
-%define revision alpha4
+%define version  1.70.0
+%define release  %mkrel 0.%revision.1
+%define revision beta1
 
 Name:            k3b
 Version:         %{version}
@@ -76,12 +76,12 @@ programs and configuring devices.
 %_kde_libdir/kde4/k3bsoxencoder.so
 %_kde_libdir/kde4/k3bwavedecoder.so
 %_kde_libdir/kde4/kcm_k3bexternalencoder.so
+%_kde_libdir/kde4/kcm_k3bsoxencoder.so
 %_kde_datadir/applications/kde4/k3b.desktop
 %_kde_datadir/mime/packages/x-k3b.xml
 %_kde_appsdir/k3b
 %_kde_appsdir/konqsidebartng/virtual_folders/services/videodvd.desktop
 %_kde_appsdir/solid/actions/*
-%_kde_iconsdir/hicolor/*/apps/k3b.png
 %_kde_datadir/kde4/services/ServiceMenus/*.desktop
 %_kde_datadir/kde4/services/*.desktop
 %_kde_datadir/kde4/servicetypes/k3bplugin.desktop
@@ -97,19 +97,20 @@ programs and configuring devices.
 #------------------------------------------------
 
 %define libk3b_major 6
-%define libk3b %mklibname k3b %libk3b_major
+%define libk3b %mklibname k3blib %libk3b_major
 
 %package -n %libk3b
 Summary: KDE 4 core library
 Group: System/Libraries
 Obsoletes: %{_lib}k3b4 < 4:1.66.0-1mdv
+Obsoletes: %{_lib}k3b6 < 4:1.70.0
 
 %description -n %libk3b
 KDE 4 core library.
 
 %files -n %libk3b
 %defattr(-,root,root)
-%_kde_libdir/libk3b.so.%{libk3b_major}*
+%_kde_libdir/libk3blib.so.%{libk3b_major}*
 
 #------------------------------------------------
 
@@ -145,7 +146,7 @@ Development libraries from %name
 %files devel
 %defattr(-,root,root,-)
 %_kde_includedir/*.h
-%_kde_libdir/libk3b.so
+%_kde_libdir/libk3blib.so
 %_kde_libdir/libk3bdevice.so
 #------------------------------------------------
 
