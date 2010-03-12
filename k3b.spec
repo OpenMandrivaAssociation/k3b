@@ -1,6 +1,6 @@
-%define version  1.70.0
+%define version  1.91.0
 %define release  %mkrel 0.%revision.1
-%define revision beta1
+%define revision rc2
 
 Name:            k3b
 Version:         %{version}
@@ -29,7 +29,7 @@ BuildRequires:   sndfile-devel
 BuildRequires:   taglib-devel
 BuildRequires:   doxygen
 BuildRequires:   libsamplerate-devel
-BuildRequires:   polkit-qt-devel
+BuildRequires:   polkit-qt-1-devel
 Requires:        cdrecord
 Requires:        mkisofs
 Requires:        cdrdao
@@ -88,12 +88,10 @@ programs and configuring devices.
 %_kde_datadir/kde4/services/videodvd.protocol
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
-%_sysconfdir/dbus-1/system.d/org.k3b.setup.conf
-%_kde_libdir/kde4/libexec/k3bsetup_worker
-%_kde_datadir/PolicyKit/policy/org.k3b.setup.policy
-%_kde_datadir/dbus-1/interfaces/org.k3b.setup.xml
-%_kde_datadir/dbus-1/system-services/org.k3b.setup.service
-
+%_sysconfdir/dbus-1/system.d/org.kde.kcontrol.k3bsetup.conf
+%_kde_libdir/kde4/libexec/k3bsetuphelper
+%_kde_datadir/polkit-1/actions/org.kde.kcontrol.k3bsetup.policy
+%_kde_datadir/dbus-1/system-services/org.kde.kcontrol.k3bsetup.service
 #------------------------------------------------
 
 %define libk3b_major 6
@@ -162,7 +160,7 @@ Development libraries from %name
 %install
 rm -rf %buildroot
 %{makeinstall_std} -C build
-%find_lang k3b k3b k3bsetup libk3b libk3bdevice
+%find_lang --with-html k3b k3b k3bsetup libk3b libk3bdevice
 
 %clean
 rm -rf %buildroot
