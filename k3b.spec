@@ -11,8 +11,6 @@ Url:             http://www.k3b.org/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version%revision.tar.bz2
-Source1:         k3b-19.5-po-files.tar.bz2 
-Patch1:          k3b-1.95-add-po.patch
 Patch3:          k3b-1.69-always-use-growisofs-for-dvd.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
@@ -150,8 +148,7 @@ Development libraries from %name
 #------------------------------------------------
 
 %prep
-%setup -q -n %name-%version -a 1
-%patch1 -p1
+%setup -q -n %name-%version
 %patch3 -p1 -b .dvd
 
 %build
