@@ -6,7 +6,7 @@ Version:         %{version}
 Release:         %{release}
 Epoch:           4
 License:         GPLv2+
-Url:             http://www.k3b.org/
+Url:             http://k3b.sourceforge.net/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
