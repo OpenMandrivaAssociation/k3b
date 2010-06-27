@@ -1,6 +1,5 @@
-%define version  1.93.0
-%define release  %mkrel 0.%revision.1
-%define revision rc4
+%define version  2.0.0
+%define release  %mkrel 1
 
 Name:            k3b
 Version:         %{version}
@@ -10,7 +9,7 @@ License:         GPLv2+
 Url:             http://www.k3b.org/
 Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version%revision.tar.bz2
+Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
 Patch3:          k3b-1.69-always-use-growisofs-for-dvd.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
