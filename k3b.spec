@@ -1,4 +1,4 @@
-%define version  2.0.0
+%define version  2.0.1
 %define release  %mkrel 1
 
 Name:            k3b
@@ -85,7 +85,7 @@ programs and configuring devices.
 %_kde_datadir/kde4/services/videodvd.protocol
 %dir %_kde_datadir/sounds
 %_kde_datadir/sounds/*.wav
-%_kde_iconsdir/hicolor/*/apps/k3b.png
+%_kde_iconsdir/hicolor/*/apps/k3b.*
 %_sysconfdir/dbus-1/system.d/org.kde.kcontrol.k3bsetup.conf
 %_kde_libdir/kde4/libexec/k3bsetuphelper
 %_kde_datadir/polkit-1/actions/org.kde.kcontrol.k3bsetup.policy
@@ -157,13 +157,7 @@ Development libraries from %name
 %install
 rm -rf %buildroot
 %{makeinstall_std} -C build
-%find_lang --with-html k3b k3b k3bsetup libk3b libk3bdevice
-
-# Copy icons on the hicolor folder ( fallback )
-for i in 16 22 32 48 64 128 ; do
-%__mkdir -p %buildroot%{_iconsdir}/hicolor/${i}x${i}/apps/
-cp  %buildroot%_kde_appsdir/k3b/icons/oxygen/${i}x${i}/apps/k3b.png %buildroot%{_iconsdir}/hicolor/${i}x${i}/apps/
-done
+%find_lang --with-html k3b k3b k3bsetup libk3b libk3bdevice kio_videodvd
 
 %clean
 rm -rf %buildroot
