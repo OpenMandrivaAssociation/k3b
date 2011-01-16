@@ -1,5 +1,5 @@
-%define version  2.0.1
-%define release  %mkrel 2
+%define version  2.0.2
+%define release  %mkrel 1
 
 Name:            k3b
 Version:         %{version}
@@ -11,7 +11,6 @@ Group:           Archiving/Cd burning
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
 Patch3:          k3b-1.69-always-use-growisofs-for-dvd.patch
-Patch101:        k3b-2.0.1-r1173576.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -84,8 +83,6 @@ programs and configuring devices.
 %_kde_datadir/kde4/services/*.desktop
 %_kde_datadir/kde4/servicetypes/k3bplugin.desktop
 %_kde_datadir/kde4/services/videodvd.protocol
-%dir %_kde_datadir/sounds
-%_kde_datadir/sounds/*.wav
 %_kde_iconsdir/hicolor/*/apps/k3b.*
 %_sysconfdir/dbus-1/system.d/org.kde.kcontrol.k3bsetup.conf
 %_kde_libdir/kde4/libexec/k3bsetuphelper
@@ -150,7 +147,6 @@ Development libraries from %name
 %prep
 %setup -q -n %name-%version
 %patch3 -p1 -b .dvd
-%patch101 -p0 -b .r1173576
 
 %build
 %cmake_kde4
