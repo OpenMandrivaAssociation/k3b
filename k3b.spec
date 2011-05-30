@@ -1,14 +1,10 @@
-%define version  2.0.2
-%define release  %mkrel 2
-
 Name:            k3b
-Version:         %{version}
-Release:         %{release}
+Version:         2.0.2
+Release:         2
 Epoch:           4
 License:         GPLv2+
 Url:             http://k3b.sourceforge.net/
 Group:           Archiving/Cd burning
-BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
 Patch3:          k3b-1.69-always-use-growisofs-for-dvd.patch
 Summary:         CD-Burner for KDE4
@@ -54,7 +50,6 @@ programs and configuring devices.
 %clean_icon_cache hicolor
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %_kde_bindir/k3b
 %_kde_bindir/k3bsetup
 %_kde_libdir/kde4/kcm_k3bsetup.so
@@ -103,7 +98,6 @@ Obsoletes: %{_lib}k3b6 < 4:1.70.0
 KDE 4 core library.
 
 %files -n %libk3b
-%defattr(-,root,root)
 %_kde_libdir/libk3blib.so.%{libk3b_major}*
 
 #------------------------------------------------
@@ -119,7 +113,6 @@ Group: System/Libraries
 KDE 4 core library.
 
 %files -n %libk3bdevice
-%defattr(-,root,root)
 %_kde_libdir/libk3bdevice.so.%{libk3bdevice_major}*
 
 #------------------------------------------------
@@ -138,7 +131,6 @@ Conflicts:       k3b < 3:1.0.4-4mdv
 Development libraries from %name
 
 %files devel
-%defattr(-,root,root,-)
 %_kde_includedir/*.h
 %_kde_libdir/libk3blib.so
 %_kde_libdir/libk3bdevice.so
@@ -153,9 +145,6 @@ Development libraries from %name
 %make
 
 %install
-rm -rf %buildroot
 %{makeinstall_std} -C build
 %find_lang --with-html k3b k3b k3bsetup libk3b libk3bdevice kio_videodvd
 
-%clean
-rm -rf %buildroot
