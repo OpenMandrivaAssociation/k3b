@@ -1,13 +1,14 @@
 Name:            k3b
 Version:         2.0.2
-Release:         3
+Release:         4
 Epoch:           5
 License:         GPLv2+
 Url:             http://k3b.sourceforge.net/
 Group:           Archiving/Cd burning
-Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
+Source0:         http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%{version}.tar.bz2
 Patch3:          k3b-1.69-always-use-growisofs-for-dvd.patch
 Patch4:		 k3b-2.0.2-l10n-ru.patch
+Patch5:		 k3b-2.0.2-ffmpeg.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
 BuildRequires:   kdemultimedia4-devel
@@ -141,6 +142,7 @@ Development libraries from %name
 %setup -q -n %name-%version
 %patch3 -p1 -b .dvd
 %patch4 -p1 -b .po-file
+%patch5 -p1
 
 %build
 %cmake_kde4
