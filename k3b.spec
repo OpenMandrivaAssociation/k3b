@@ -1,6 +1,6 @@
 Name:            k3b
 Version:         2.0.2
-Release:         4
+Release:         5
 Epoch:           5
 License:         GPLv2+
 Url:             http://k3b.sourceforge.net/
@@ -17,7 +17,7 @@ BuildRequires:   libogg-devel
 BuildRequires:   libvorbis-devel
 BuildRequires:   libflac++-devel
 BuildRequires:   libflac-devel
-BuildRequires:   ffmpeg-devel
+BuildRequires:   ffmpeg-devel >= 0.10
 BuildRequires:   mad-devel
 BuildRequires:   libmpcdec-devel
 BuildRequires:   sndfile-devel
@@ -150,5 +150,6 @@ Development libraries from %name
 
 %install
 %{makeinstall_std} -C build
-%find_lang --with-html k3b k3b k3bsetup libk3b libk3bdevice kio_videodvd
+pwd
+%find_lang k3b k3bsetup libk3b libk3bdevice kio_videodvd k3b.lang --with-html
 
