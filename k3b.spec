@@ -1,7 +1,7 @@
 Name:            k3b
 Version:         2.0.2
 Release:         6
-Epoch:           5
+Epoch:           6
 License:         GPLv2+
 Url:             http://k3b.sourceforge.net/
 Group:           Archiving/Cd burning
@@ -147,7 +147,7 @@ Development libraries from %name
 %patch5 -p1
 
 %build
-%cmake_kde4
+%cmake_kde4	-DK3B_ENABLE_HAL_SUPPORT:BOOL=OFF
 %make
 
 %install
