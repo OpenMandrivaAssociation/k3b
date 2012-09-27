@@ -147,7 +147,8 @@ Development libraries from %name
 %patch5 -p1
 
 %build
-%cmake_kde4	-DK3B_ENABLE_HAL_SUPPORT:BOOL=OFF
+%cmake_kde4	-DK3B_ENABLE_HAL_SUPPORT:BOOL=OFF \
+		-DK3B_BUILD_K3BSETUP:BOOL=OFF
 %make
 
 %install
