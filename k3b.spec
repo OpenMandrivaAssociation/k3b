@@ -12,7 +12,6 @@ Patch4:		 k3b-2.0.2-l10n-ru.patch
 Patch5:		 k3b-2.0.2-ffmpeg.patch
 Summary:         CD-Burner for KDE4
 BuildRequires:   kdelibs4-devel
-BuildRequires:   kdemultimedia4-devel
 BuildRequires:   libdvdread-devel
 BuildRequires:   libogg-devel
 BuildRequires:   libvorbis-devel
