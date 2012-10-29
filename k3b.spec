@@ -25,6 +25,7 @@ BuildRequires:   taglib-devel
 BuildRequires:   doxygen
 BuildRequires:   libsamplerate-devel
 BuildRequires:   polkit-qt-1-devel
+BuildRequires:	 libkcddb-devel
 Requires:        cdrecord
 Requires:        mkisofs
 Requires:        cdrdao
@@ -53,8 +54,6 @@ programs and configuring devices.
 
 %files -f %{name}.lang
 %_kde_bindir/k3b
-%_kde_bindir/k3bsetup
-%_kde_libdir/kde4/kcm_k3bsetup.so
 %_kde_libdir/kde4/kcm_k3boggvorbisencoder.so
 %_kde_libdir/kde4/kio_videodvd.so
 %_kde_libdir/kde4/k3bffmpegdecoder.so
@@ -81,10 +80,6 @@ programs and configuring devices.
 %_kde_datadir/kde4/servicetypes/k3bplugin.desktop
 %_kde_datadir/kde4/services/videodvd.protocol
 %_kde_iconsdir/hicolor/*/apps/k3b.*
-%_sysconfdir/dbus-1/system.d/org.kde.kcontrol.k3bsetup.conf
-%_kde_libdir/kde4/libexec/k3bsetuphelper
-%_kde_datadir/polkit-1/actions/org.kde.kcontrol.k3bsetup.policy
-%_kde_datadir/dbus-1/system-services/org.kde.kcontrol.k3bsetup.service
 #------------------------------------------------
 
 %define libk3b_major 6
