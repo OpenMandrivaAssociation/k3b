@@ -1,6 +1,6 @@
 Name:            k3b
 Version:         2.0.2
-Release:         6
+Release:         7
 Epoch:           6
 License:         GPLv2+
 Url:             http://k3b.sourceforge.net/
