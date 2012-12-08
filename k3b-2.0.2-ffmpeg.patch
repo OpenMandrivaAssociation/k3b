@@ -94,5 +94,3 @@ index 0ad59fc..0c5f366 100644
  
          if( d->packetSize <= 0 || len < 0 )
              ::av_free_packet( &d->packet );
-
-
