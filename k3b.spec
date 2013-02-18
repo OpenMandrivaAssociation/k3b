@@ -1,7 +1,7 @@
 Summary:	CD-Burner for KDE4
 Name:		k3b
 Version:	2.0.2
-Release:	6
+Release:	7
 Epoch:		4
 License:	GPLv2+
 Group:		Archiving/Cd burning
@@ -43,8 +43,6 @@ programs and configuring devices.
 
 %files
 %{_kde_bindir}/k3b
-%{_kde_bindir}/k3bsetup
-%{_kde_libdir}/kde4/kcm_k3bsetup.so
 %{_kde_libdir}/kde4/kcm_k3boggvorbisencoder.so
 %{_kde_libdir}/kde4/kio_videodvd.so
 %{_kde_libdir}/kde4/k3bffmpegdecoder.so
@@ -71,10 +69,6 @@ programs and configuring devices.
 %{_kde_datadir}/kde4/servicetypes/k3bplugin.desktop
 %{_kde_datadir}/kde4/services/videodvd.protocol
 %{_kde_iconsdir}/hicolor/*/apps/k3b.*
-%{_sysconfdir}/dbus-1/system.d/org.kde.kcontrol.k3bsetup.conf
-%{_kde_libdir}/kde4/libexec/k3bsetuphelper
-%{_kde_datadir}/polkit-1/actions/org.kde.kcontrol.k3bsetup.policy
-%{_kde_datadir}/dbus-1/system-services/org.kde.kcontrol.k3bsetup.service
 %{_kde_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_kde_datadir}/doc/HTML/*
 #------------------------------------------------
@@ -132,7 +126,7 @@ Development libraries from %{name}
 %patch4 -p1 -b .l10n-ru
 
 %build
-%cmake_kde4
+%cmake_kde4 -DK3B_ENABLE_HAL_SUPPORT:BOOL=OFF -DK3B_BUILD_K3BSETUP:BOOL=OFF
 %make
 
 %install
