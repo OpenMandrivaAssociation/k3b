@@ -2,7 +2,7 @@ Summary:	CD-Burner for KDE4
 Name:		k3b
 Epoch:		6
 Version:	2.0.2
-Release:	10
+Release:	11
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
