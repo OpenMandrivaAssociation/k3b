@@ -1,16 +1,21 @@
+%define git 20140211
+
 Summary:	CD-Burner for KDE4
 Name:		k3b
 Epoch:		6
-Version:	2.0.2
-Release:	14
+Version:	2.0.3
+%if "%{git}" != ""
+Release:	0.%{git}.1
+Source0:	%{name}-%git.tar.xz
+%else
+Release:	1
+Source0:	http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
+%endif
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
-Source0:	http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
-Patch0:		k3b-2.0.2-ffmpeg.patch
-Patch1:		k3b-2.0.2-libavformat54.patch
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
-Patch4:		k3b-2.0.2-l10n-ru.patch
+#Patch4:		k3b-2.0.2-l10n-ru.patch
 
 BuildRequires:	doxygen
 BuildRequires:	kdelibs4-devel
@@ -120,7 +125,11 @@ Development libraries from %{name}
 #------------------------------------------------
 
 %prep
+%if "%{git}" != ""
+%setup -q -n %{name}
+%else
 %setup -q
+%endif
 %apply_patches
 
 %build

@@ -1,18 +1,12 @@
---- k3b-1.69.0/libk3b/jobs/k3bmetawriter.cpp.dvd	2009-10-25 21:26:20.000000000 +0100
-+++ k3b-1.69.0/libk3b/jobs/k3bmetawriter.cpp	2009-11-28 07:55:21.000000000 +0100
-@@ -310,14 +310,9 @@
-                 emit infoMessage( i18n("DVD and Blu-ray tracks can only be written in MODE1."), MessageWarning );
+--- k3b/libk3b/jobs/k3bmetawriter.cpp.0003~	2014-02-11 21:44:00.470432768 +0100
++++ k3b/libk3b/jobs/k3bmetawriter.cpp	2014-02-11 21:45:52.376429942 +0100
+@@ -319,7 +319,8 @@ bool K3b::MetaWriter::determineUsedAppAn
              }
- 
--            if( mediaType & (K3b::Device::MEDIA_DVD_PLUS_RW|K3b::Device::MEDIA_DVD_RW_OVWR) &&
--                d->multiSession ) {
--                // we can only do this with growisofs
-+            if( mediaType & Device::MEDIA_DVD_ALL ) {
-                 d->usedWritingApp = WritingAppGrowisofs;
-             }
--            else if( mediaType & Device::MEDIA_DVD_ALL ) {
--                d->usedWritingApp = WritingAppCdrecord;
--            }
-             else if( mediaType & Device::MEDIA_BD_ALL ) {
-                 if( cdrecordBluRay ) {
-                     d->usedWritingApp = WritingAppCdrecord;
+             else if( mediaType & Device::MEDIA_DVD_ALL ) {
+                 // wodim (at least on fedora) doesn't do DVDs all that well, use growisofs instead
+-                if ( cdrecordWodim ) {
++		// growisofs is usually also better than cdrecord, so...
++                if ( 1 /*cdrecordWodim*/ ) {
+                     d->usedWritingApp = WritingAppGrowisofs;
+                 }
+                 else {
