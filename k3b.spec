@@ -75,8 +75,13 @@ programs and configuring devices.
 %{_kde_datadir}/kde4/servicetypes/k3bplugin.desktop
 %{_kde_datadir}/kde4/services/videodvd.protocol
 %{_kde_iconsdir}/hicolor/*/apps/k3b.*
-%{_kde_datadir}/locale/*/LC_MESSAGES/*.mo
+%optional %{_kde_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_kde_datadir}/doc/HTML/*
+%{_sysconfdir}/dbus-1/system.d/org.kde.k3b.conf
+%{_libdir}/kde4/libexec/k3bhelper
+%{_datadir}/dbus-1/system-services/org.kde.k3b.service
+%{_datadir}/icons/hicolor/*/mimetypes/application-x-k3b.*
+%{_datadir}/polkit-1/actions/org.kde.k3b.policy
 #------------------------------------------------
 
 %define libk3b_major 6
@@ -138,5 +143,3 @@ Development libraries from %{name}
 
 %install
 %makeinstall_std -C build
-%find_lang --with-html k3b k3bsetup libk3b libk3bdevice kio_videodvd k3b.lang
-
