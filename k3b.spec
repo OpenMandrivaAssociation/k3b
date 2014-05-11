@@ -5,10 +5,10 @@ Name:		k3b
 Epoch:		6
 Version:	2.0.3
 %if "%{git}" != ""
-Release:	0.%{git}.1
+Release:	0.%{git}.2
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	1
+Release:	2
 Source0:	http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
 %endif
 License:	GPLv2+
@@ -16,6 +16,7 @@ Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 #Patch4:		k3b-2.0.2-l10n-ru.patch
+Patch5:		k3b-2.0.2-dvdcss.patch
 
 BuildRequires:	doxygen
 BuildRequires:	kdelibs4-devel
