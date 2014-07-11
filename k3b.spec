@@ -8,7 +8,7 @@ Version:	2.0.3
 Release:	0.%{git}.2
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	3
+Release:	4
 Source0:	http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
 %endif
 License:	GPLv2+
