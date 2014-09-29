@@ -5,7 +5,7 @@ Name:		k3b
 Epoch:		6
 Version:	2.0.3
 %if "%{git}" != ""
-Release:	0.%{git}.2
+Release:	0.%{git}.3
 Source0:	%{name}-%git.tar.xz
 %else
 Release:	4
@@ -17,7 +17,7 @@ Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 #Patch4:		k3b-2.0.2-l10n-ru.patch
 Patch5:		k3b-2.0.2-dvdcss.patch
-
+Patch6:		k3b-20140211-ffmpeg_check.patch
 BuildRequires:	doxygen
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libkcddb-devel
