@@ -5,7 +5,7 @@ Name:		k3b
 Epoch:		6
 Version:	2.0.3
 %if "%{git}" != ""
-Release:	0.%{git}.3
+Release:	0.%{git}.4
 Source0:	%{name}-%git.tar.xz
 %else
 Release:	4
@@ -41,6 +41,8 @@ Requires:	vcdimager
 Requires:	normalize
 Requires:	dvd+rw-tools
 Requires:	kdebase4-runtime
+# (tpg) needed for bug https://issues.openmandriva.org/show_bug.cgi?id=876
+Requires:	%{_lib}cdio_paranoia-devel
 
 %description
 K3b is CD-writing software which intends to be feature-rich and
