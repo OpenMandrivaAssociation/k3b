@@ -1,4 +1,4 @@
-%define git 20140211
+%define git %{nil}
 
 Summary:	CD-Burner for KDE4
 Name:		k3b
@@ -8,15 +8,13 @@ Version:	2.0.3
 Release:	0.%{git}.4
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	4
-Source0:	http://jaist.dl.sourceforge.net/sourceforge/k3b/%{name}-%version.tar.bz2
+Release:	1
+Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
 %endif
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
-#Patch4:		k3b-2.0.2-l10n-ru.patch
-Patch5:		k3b-2.0.2-dvdcss.patch
 Patch6:		k3b-20140211-ffmpeg_check.patch
 BuildRequires:	doxygen
 BuildRequires:	kdelibs4-devel
@@ -80,11 +78,6 @@ programs and configuring devices.
 %{_kde_iconsdir}/hicolor/*/apps/k3b.*
 %optional %{_kde_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_kde_datadir}/doc/HTML/*
-%{_sysconfdir}/dbus-1/system.d/org.kde.k3b.conf
-%{_libdir}/kde4/libexec/k3bhelper
-%{_datadir}/dbus-1/system-services/org.kde.k3b.service
-%{_datadir}/icons/hicolor/*/mimetypes/application-x-k3b.*
-%{_datadir}/polkit-1/actions/org.kde.k3b.policy
 #------------------------------------------------
 
 %define libk3b_major 6

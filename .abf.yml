@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   k3b-20140211.tar.xz: 39c8be97d540bafc682abe671dfc8e0e926462c4
+sources:
+  k3b-2.0.3.tar.xz: f1001db3b5b32ef6bdb827742f1ca357c82b216f
