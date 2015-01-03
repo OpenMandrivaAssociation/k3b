@@ -8,7 +8,7 @@ Version:	2.0.3
 Release:	0.%{git}.4
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	2
+Release:	3
 Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
 %endif
 License:	GPLv2+
@@ -39,8 +39,6 @@ Requires:	vcdimager
 Requires:	normalize
 Requires:	dvd+rw-tools
 Requires:	kdebase4-runtime
-# (tpg) needed for bug https://issues.openmandriva.org/show_bug.cgi?id=876
-Requires:	%{_lib}cdio_paranoia-devel
 
 %description
 K3b is CD-writing software which intends to be feature-rich and
