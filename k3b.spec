@@ -132,6 +132,9 @@ Development libraries from %{name}
 %apply_patches
 
 %build
+export CC=gcc
+export CXX=g++
+
 %cmake_kde4 -DK3B_ENABLE_HAL_SUPPORT:BOOL=OFF -DK3B_BUILD_K3BSETUP:BOOL=OFF
 %make
 
