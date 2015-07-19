@@ -8,7 +8,7 @@ Version:	2.0.3
 Release:	0.%{git}.4
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	3
+Release:	4
 Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
 %endif
 License:	GPLv2+
