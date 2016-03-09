@@ -8,14 +8,14 @@ Version:	2.0.3
 Release:	0.%{git}.4
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	4
+Release:	5
 Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
 %endif
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
-Patch6:		k3b-20140211-ffmpeg_check.patch
+Patch7:		k3b-ffmpeg3.patch
 BuildRequires:	doxygen
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libkcddb-devel
@@ -130,6 +130,9 @@ Development libraries from %{name}
 %setup -q
 %endif
 %apply_patches
+
+# Workaround build failure with cmake 3.4
+sed -e "s|^cmake_minimum_required|#cmake_minimum_required|" -i CMakeLists.txt
 
 %build
 export CC=gcc
