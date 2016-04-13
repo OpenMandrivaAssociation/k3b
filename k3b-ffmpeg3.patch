@@ -1,21 +1,22 @@
-From 52d3d64863d2fab4128f524870851f18f5cae1fc Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Old=C5=99ich=20Jedli=C4=8Dka?= <oldium.pro@seznam.cz>
-Date: Sat, 14 Feb 2015 15:31:07 +0100
-Subject: [PATCH] Fixed compilation with newer ffmpeg/libav.
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-Signed-off-by: Oldřich Jedlička <oldium.pro@seznam.cz>
----
- plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp | 60 ++++++++++++++++++++++++-----
- 1 file changed, 50 insertions(+), 10 deletions(-)
-
-diff --git a/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
-index 5451fd3..2f80fd6 100644
---- a/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
-+++ b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
-@@ -86,8 +86,12 @@ public:
+--- k3b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.0007~	2016-04-04 09:42:55.000000000 +0200
++++ k3b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2016-04-14 00:19:29.408891099 +0200
+@@ -43,6 +43,15 @@ extern "C" {
+ #define FFMPEG_CODEC(s) (s->codec)
+ #endif
+ 
++#define HAVE_FFMPEG_AVFORMAT_OPEN_INPUT
++#define HAVE_FFMPEG_AV_DUMP_FORMAT
++#define HAVE_FFMPEG_AVFORMAT_FIND_STREAM_INFO
++#define HAVE_FFMPEG_AVFORMAT_CLOSE_INPUT
++#define HAVE_FFMPEG_AVCODEC_OPEN2
++#define HAVE_FFMPEG_AVMEDIA_TYPE
++#define HAVE_FFMPEG_CODEC_MP3
++#define HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
++
+ #ifndef HAVE_FFMPEG_AVFORMAT_OPEN_INPUT
+ //      this works because the parameters/options are not used
+ #  define avformat_open_input(c,s,f,o) av_open_input_file(c,s,f,0,o)
+@@ -85,8 +94,12 @@ public:
      K3b::Msf length;
  
      // for decoding. ffmpeg requires 16-byte alignment.
@@ -28,7 +29,7 @@ index 5451fd3..2f80fd6 100644
      char* outputBufferPos;
      int outputBufferSize;
      ::AVPacket packet;
-@@ -102,14 +106,29 @@ K3bFFMpegFile::K3bFFMpegFile( const QString& filename )
+@@ -101,14 +114,29 @@ K3bFFMpegFile::K3bFFMpegFile( const QStr
      d = new Private;
      d->formatContext = 0;
      d->codec = 0;
@@ -58,7 +59,34 @@ index 5451fd3..2f80fd6 100644
      delete d;
  }
  
-@@ -326,26 +345,36 @@ int K3bFFMpegFile::fillOutputBuffer()
+@@ -241,7 +269,7 @@ QString K3bFFMpegFile::title() const
+     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "TITLE", NULL, 0 );
+     if( ade == NULL )
+         return QString();
+-    if( ade->value != '\0' )
++    if( ade->value != 0 )
+         return QString::fromLocal8Bit( ade->value );
+     else
+         return QString();
+@@ -254,7 +282,7 @@ QString K3bFFMpegFile::author() const
+     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "ARTIST", NULL, 0 );
+     if( ade == NULL )
+         return QString();
+-    if( ade->value != '\0' )
++    if( ade->value != 0 )
+         return QString::fromLocal8Bit( ade->value );
+     else
+         return QString();
+@@ -267,7 +295,7 @@ QString K3bFFMpegFile::comment() const
+     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "COMMENT", NULL, 0 );
+     if( ade == NULL )
+         return QString();
+-    if( ade->value != '\0' )
++    if( ade->value != 0 )
+         return QString::fromLocal8Bit( ade->value );
+     else
+         return QString();
+@@ -325,26 +353,36 @@ int K3bFFMpegFile::fillOutputBuffer()
              return 0;
          }
  
@@ -102,7 +130,7 @@ index 5451fd3..2f80fd6 100644
  #endif
  
          if( d->packetSize <= 0 || len < 0 )
-@@ -355,6 +384,17 @@ int K3bFFMpegFile::fillOutputBuffer()
+@@ -354,6 +392,17 @@ int K3bFFMpegFile::fillOutputBuffer()
              return -1;
          }
  
@@ -120,7 +148,7 @@ index 5451fd3..2f80fd6 100644
          d->packetSize -= len;
          d->packetData += len;
      }
-@@ -420,9 +460,9 @@ K3bFFMpegFile* K3bFFMpegWrapper::open( const QString& filename ) const
+@@ -419,9 +468,9 @@ K3bFFMpegFile* K3bFFMpegWrapper::open( c
          // mp3 being one of them sadly. Most importantly: allow the libsndfile decoder to do
          // its thing.
          //
@@ -133,6 +161,3 @@ index 5451fd3..2f80fd6 100644
  #endif
              return file;
      }
--- 
-2.0.5
-
