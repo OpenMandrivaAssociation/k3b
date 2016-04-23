@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(taglib)
 BuildRequires:	pkgconfig(libmusicbrainz5)
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
+BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5DBus)
 BuildRequires:	cmake(Qt5Gui)
@@ -62,10 +63,10 @@ BuildRequires:	cmake(KF5WidgetsAddons)
 BuildRequires:	cmake(KF5XmlGui)
 BuildRequires:	cmake(KF5)
 BuildRequires:	cmake(SharedMimeInfo)
-BuildRequires:	cmake(Libkcddb)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	ninja
-# Both KDE4 and KDE5's libkcddb provide cmake(Libkcddb)
+BuildRequires:	shared-mime-info
+# Both KDE4 and KDE5's libkcddb provide cmake(Libkcddb) -- so let's use the old-style name
 BuildRequires:	kcddb5-devel
 Requires:	cdrecord
 Requires:	mkisofs
