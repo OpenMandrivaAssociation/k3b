@@ -65,8 +65,8 @@ BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(Libkcddb)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	ninja
-# FIXME currently k3b gets confused by KDE4's kglobal.h
-BuildConflicts:	kdelibs-devel
+# Both KDE4 and KDE5's libkcddb provide cmake(Libkcddb)
+BuildRequires:	kcddb5-devel
 Requires:	cdrecord
 Requires:	mkisofs
 Requires:	cdrdao
