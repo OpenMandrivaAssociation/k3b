@@ -30,6 +30,7 @@ BuildRequires:	pkgconfig(polkit-qt-1)
 BuildRequires:	pkgconfig(sndfile)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	pkgconfig(taglib)
+BuildRequires:	pkgconfig(libmusicbrainz5)
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt5Core)
@@ -64,6 +65,8 @@ BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(Libkcddb)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	ninja
+# FIXME currently k3b gets confused by KDE4's kglobal.h
+BuildConflicts:	kdelibs-devel
 Requires:	cdrecord
 Requires:	mkisofs
 Requires:	cdrdao
