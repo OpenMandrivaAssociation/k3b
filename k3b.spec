@@ -9,7 +9,7 @@ Version:	2.9.90
 Release:	0.%{git}.1
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	1
+Release:	2
 Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
 %endif
 Source100:	%{name}.rpmlintrc
@@ -18,6 +18,8 @@ Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 Patch7:		k3b-ffmpeg3.patch
+# infinite loop when burning an iso
+Patch8:		k3b-invalid_url.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(ogg)

@@ -1,0 +1,98 @@
+From: Leslie Zhai <xiangzhai83@gmail.com>
+Date: Fri, 08 Jul 2016 01:28:28 +0000
+Subject: Fix imageFilesize QUrl and QString filePath wrong convertion issue.
+X-Git-Url: http://quickgit.kde.org/?p=k3b.git&a=commitdiff&h=fc4c54f7294293847c545e84090f2c0f66ad210b
+---
+Fix imageFilesize QUrl and QString filePath wrong convertion issue.
+
+BUG: 365089
+REVIEW: 128376
+---
+
+
+--- a/libk3b/core/k3bglobals.cpp
++++ b/libk3b/core/k3bglobals.cpp
+@@ -229,11 +229,8 @@
+     else {
+         KIO::UDSEntry uds;
+         KIO::StatJob* statJob = KIO::stat( url, KIO::HideProgressInfo );
+-        QObject::connect( statJob, &KJob::result, [&](KJob*){
+-            if( statJob->error() == KJob::NoError )
+-                uds = statJob->statResult();
+-        } );
+-        statJob->exec();
++        if (statJob->exec())
++            uds = statJob->statResult();
+         fSize = uds.numberValue( KIO::UDSEntry::UDS_SIZE );
+     }
+ 
+@@ -250,13 +247,10 @@
+         QUrl nextUrl( url );
+         nextUrl.setPath(nextUrl.path() + '.' + QString::number(cnt).rightJustified( 3, '0' ));
+         KIO::StatJob* statJob = KIO::stat(nextUrl, KIO::StatJob::SourceSide, KIO::HideProgressInfo);
+-        QObject::connect(statJob, &KJob::result, [&](KJob*) {
+-            if( statJob->error() != KJob::NoError )
+-                size += K3b::filesize( nextUrl );
+-            else
+-                exists = false;
+-        } );
+-        statJob->exec();
++        if (statJob->exec())
++            size += K3b::filesize(nextUrl);
++        else
++            exists = false;
+     }
+     return size;
+ }
+
+--- a/libk3b/jobs/k3biso9660imagewritingjob.cpp
++++ b/libk3b/jobs/k3biso9660imagewritingjob.cpp
+@@ -94,7 +94,7 @@
+         return;
+     }
+ 
+-    KIO::filesize_t mb = K3b::imageFilesize( m_imagePath )/1024ULL/1024ULL;
++    KIO::filesize_t mb = K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/1024ULL/1024ULL;
+ 
+     // very rough test but since most dvd images are 4,x or 8,x GB it should be enough
+     d->isDvdImage = ( mb > 900ULL );
+@@ -132,7 +132,7 @@
+             }
+             d->verifyJob->setDevice( m_device );
+             d->verifyJob->clear();
+-            d->verifyJob->addTrack( 1, d->checksumPipe.checksum(), K3b::imageFilesize( m_imagePath )/2048 );
++            d->verifyJob->addTrack( 1, d->checksumPipe.checksum(), K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048 );
+ 
+             if( m_copies == 1 )
+                 emit newTask( i18n("Verifying written data") );
+@@ -266,7 +266,7 @@
+ 
+ 
+     // wait for the media
+-    Device::MediaType media = waitForMedium( m_device, K3b::Device::STATE_EMPTY, mt, K3b::imageFilesize( m_imagePath )/2048 );
++    Device::MediaType media = waitForMedium( m_device, K3b::Device::STATE_EMPTY, mt, K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048 );
+     if( media == Device::MEDIA_UNKNOWN ) {
+         d->finished = true;
+         emit canceled();
+@@ -310,7 +310,7 @@
+     d->writer->setMultiSession( m_noFix );
+ 
+     Device::Toc toc;
+-    toc << Device::Track( 0, Msf(K3b::imageFilesize( m_imagePath )/2048)-1,
++    toc << Device::Track( 0, Msf(K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048)-1,
+                           Device::Track::TYPE_DATA,
+                           ( m_dataMode == K3b::DataModeAuto && m_noFix ) ||
+                           m_dataMode == K3b::DataMode2
+
+--- a/libk3b/tools/k3bmd5job.cpp
++++ b/libk3b/tools/k3bmd5job.cpp
+@@ -104,7 +104,7 @@
+             return;
+         }
+ 
+-        d->imageSize = K3b::filesize( d->filename );
++        d->imageSize = K3b::filesize( QUrl::fromLocalFile(d->filename) );
+     }
+     else
+         d->imageSize = 0;
+
