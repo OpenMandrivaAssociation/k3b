@@ -1,12 +1,12 @@
 # Taken from kf5 branch in git://anongit.kde.org/k3b.git
 %define git 20160413
 
-Summary:	CD-Burner for KDE4
+Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
 Version:	2.9.90
 %if "%{git}" != ""
-Release:	0.%{git}.1
+Release:	0.%{git}.2
 Source0:	%{name}-%git.tar.xz
 %else
 Release:	2
