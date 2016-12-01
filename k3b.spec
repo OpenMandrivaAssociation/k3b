@@ -65,8 +65,7 @@ BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	shared-mime-info
-# Both KDE4 and KDE5's libkcddb provide cmake(Libkcddb) -- so let's use the old-style name
-BuildRequires:	kcddb5-devel
+BuildRequires:	cmake(KF5Cddb)
 Requires:	cdrecord
 Requires:	mkisofs
 Requires:	cdrdao
