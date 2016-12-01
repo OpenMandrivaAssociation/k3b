@@ -18,8 +18,6 @@ Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 #Patch7:		k3b-ffmpeg3.patch
-# infinite loop when burning an iso
-Patch8:		k3b-invalid_url.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(ogg)
