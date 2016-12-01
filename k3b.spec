@@ -122,7 +122,7 @@ Development libraries from %{name}
 
 %prep
 %if "%{git}" != ""
-%setup -q -n %{name}
+%setup -q -n %{name}-%{git}
 %else
 %setup -q
 %endif
