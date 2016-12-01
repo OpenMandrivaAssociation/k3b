@@ -31,7 +31,6 @@ BuildRequires:	pkgconfig(sndfile)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	pkgconfig(taglib)
 BuildRequires:	pkgconfig(libmusicbrainz5)
-BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(Qt5Core)
@@ -63,8 +62,8 @@ BuildRequires:	cmake(KF5WidgetsAddons)
 BuildRequires:	cmake(KF5XmlGui)
 BuildRequires:	cmake(KF5)
 BuildRequires:	cmake(SharedMimeInfo)
+BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	pkgconfig(samplerate)
-BuildRequires:	ninja
 BuildRequires:	shared-mime-info
 # Both KDE4 and KDE5's libkcddb provide cmake(Libkcddb) -- so let's use the old-style name
 BuildRequires:	kcddb5-devel
@@ -129,7 +128,7 @@ Development libraries from %{name}
 # Workaround build failure with cmake 3.4
 #sed -e "s|^cmake_minimum_required|#cmake_minimum_required|" -i CMakeLists.txt
 
-%cmake_kde5 -G Ninja
+%cmake_kde5
 
 %build
 %ninja -C build
