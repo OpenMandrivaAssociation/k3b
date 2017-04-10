@@ -1,16 +1,16 @@
 # Taken from kf5 branch in git://anongit.kde.org/k3b.git
-%define git 20161201
+%define git %{nil}
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	2.9.90
+Version:	17.03.90
 %if "%{git}" != ""
 Release:	0.%{git}.3
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	2
-Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
+Release:	1
+Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.gz
 %endif
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
