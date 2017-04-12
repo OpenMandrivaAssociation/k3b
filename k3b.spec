@@ -1,16 +1,16 @@
 # Taken from kf5 branch in git://anongit.kde.org/k3b.git
-%define git 20161201
+%define git %{nil}
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	2.9.90
+Version:	17.03.90
 %if "%{git}" != ""
 Release:	0.%{git}.3
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	2
-Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.xz
+Release:	1
+Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.gz
 %endif
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
@@ -88,7 +88,7 @@ programs and configuring devices.
 %{_libdir}/qt5/plugins/k3b*.so
 %{_libdir}/qt5/plugins/kcm_*.so
 %{_libdir}/qt5/plugins/kio_videodvd.so
-%{_datadir}/appdata/org.kde.k3b.appdata.xml
+%{_datadir}/metainfo/org.kde.k3b.appdata.xml
 %{_datadir}/applications/org.kde.k3b.desktop
 %{_datadir}/icons/*/*/*/k3b.*
 %{_datadir}/icons/*/*/*/application-x-k3b.*
@@ -103,6 +103,7 @@ programs and configuring devices.
 %{_datadir}/kxmlgui5/k3b
 %{_datadir}/mime/packages/x-k3b.xml
 %{_datadir}/solid/actions/k3b*
+%{_sysconfdir}/xdg/k3b*
 %doc %{_docdir}/HTML/en/k3b
 
 %package devel
@@ -127,6 +128,7 @@ Development libraries from %{name}
 # Workaround build failure with cmake 3.4
 #sed -e "s|^cmake_minimum_required|#cmake_minimum_required|" -i CMakeLists.txt
 
+export CC=gcc
 %cmake_kde5
 
 %build
