@@ -4,7 +4,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	17.03.90
+Version:	17.04.0
 %if "%{git}" != ""
 Release:	0.%{git}.3
 Source0:	%{name}-%git.tar.xz
@@ -66,6 +66,7 @@ BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	shared-mime-info
 BuildRequires:	cmake(KF5Cddb)
+Requires:	cdrskin
 Requires:	cdrecord
 Requires:	mkisofs
 Requires:	cdrdao
