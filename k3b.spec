@@ -4,20 +4,20 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	17.04.0
+Version:	17.04.2
 %if "%{git}" != ""
-Release:	0.%{git}.3
+Release:	0.%{git}.1
 Source0:	%{name}-%git.tar.xz
 %else
 Release:	1
-Source0:	ftp://ftp.kde.org/pub/kde/stable/k3b/%{name}-%version.tar.gz
+Source0:	http://download.kde.org/stable/applications/%{version}/src/%{name}-%version.tar.xz
 %endif
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
-#Patch7:		k3b-ffmpeg3.patch
+Patch7:		k3b-ffmpeg3.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(ogg)
@@ -83,7 +83,7 @@ provide an easily usable interface. Features include burning
 audio CDs from .WAV and .MP3 audio files, configuring external
 programs and configuring devices.
 
-%files
+%files -f all.lang
 %{_bindir}/k3b
 %{_libdir}/lib*.so.7*
 %{_libdir}/qt5/plugins/k3b*.so
@@ -105,7 +105,6 @@ programs and configuring devices.
 %{_datadir}/mime/packages/x-k3b.xml
 %{_datadir}/solid/actions/k3b*
 %{_sysconfdir}/xdg/k3b*
-%doc %{_docdir}/HTML/en/k3b
 
 %package devel
 Group:		Development/KDE and Qt
@@ -125,11 +124,6 @@ Development libraries from %{name}
 %setup -q
 %endif
 %apply_patches
-
-# Workaround build failure with cmake 3.4
-#sed -e "s|^cmake_minimum_required|#cmake_minimum_required|" -i CMakeLists.txt
-
-export CC=gcc
 %cmake_kde5
 
 %build
@@ -137,3 +131,8 @@ export CC=gcc
 
 %install
 %ninja_install -C build
+%find_lang k3b --with-html
+%find_lang kio_videodvd
+%find_lang libk3b
+%find_lang libk3bdevice
+cat *.lang >all.lang
