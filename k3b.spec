@@ -4,7 +4,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	17.12.1
+Version:	 17.12.2
 %if "%{git}" != ""
 Release:	1.%{git}.1
 Source0:	%{name}-%git.tar.xz

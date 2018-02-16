@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   k3b-17.12.1.tar.xz: c14e5fd86f10c974658ba9310e4a1e8f52498798
+sources:
+  k3b-17.12.2.tar.xz: d48ac469107e186f5b312c50e37195f7d5b3baf2
