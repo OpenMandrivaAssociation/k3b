@@ -1,8 +1,8 @@
---- k3b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.0007~	2016-04-04 09:42:55.000000000 +0200
-+++ k3b/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2016-04-14 00:19:29.408891099 +0200
-@@ -43,6 +43,15 @@ extern "C" {
- #define FFMPEG_CODEC(s) (s->codec)
- #endif
+--- k3b-17.04.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.omv~	2017-07-07 23:46:45.470428442 +0200
++++ k3b-17.04.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2017-07-07 23:47:11.014876576 +0200
+@@ -17,6 +17,16 @@
+ 
+ #include <config-k3b.h>
  
 +#define HAVE_FFMPEG_AVFORMAT_OPEN_INPUT
 +#define HAVE_FFMPEG_AV_DUMP_FORMAT
@@ -12,152 +12,8 @@
 +#define HAVE_FFMPEG_AVMEDIA_TYPE
 +#define HAVE_FFMPEG_CODEC_MP3
 +#define HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
++#define NEWFFMPEGAVCODECPATH
 +
- #ifndef HAVE_FFMPEG_AVFORMAT_OPEN_INPUT
- //      this works because the parameters/options are not used
- #  define avformat_open_input(c,s,f,o) av_open_input_file(c,s,f,0,o)
-@@ -85,8 +94,12 @@ public:
-     K3b::Msf length;
- 
-     // for decoding. ffmpeg requires 16-byte alignment.
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+    ::AVFrame* frame;
-+#else
-     char outputBuffer[AVCODEC_MAX_AUDIO_FRAME_SIZE + 15];
-     char* alignedOutputBuffer;
-+#endif
-     char* outputBufferPos;
-     int outputBufferSize;
-     ::AVPacket packet;
-@@ -101,14 +114,29 @@ K3bFFMpegFile::K3bFFMpegFile( const QStr
-     d = new Private;
-     d->formatContext = 0;
-     d->codec = 0;
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+#  if LIBAVCODEC_BUILD < AV_VERSION_INT(55,28,1)
-+    d->frame = avcodec_alloc_frame();
-+#  else
-+    d->frame = av_frame_alloc();
-+#  endif
-+#else
-     int offset = 0x10 - (reinterpret_cast<intptr_t>(&d->outputBuffer) & 0xf);
-     d->alignedOutputBuffer = &d->outputBuffer[offset];
-+#endif
- }
- 
- 
- K3bFFMpegFile::~K3bFFMpegFile()
- {
-     close();
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+#  if LIBAVCODEC_BUILD < AV_VERSION_INT(55,28,1)
-+    av_free(d->frame);
-+#  else
-+    av_frame_free(&d->frame);
-+#  endif
-+#endif
-     delete d;
- }
- 
-@@ -241,7 +269,7 @@ QString K3bFFMpegFile::title() const
-     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "TITLE", NULL, 0 );
-     if( ade == NULL )
-         return QString();
--    if( ade->value != '\0' )
-+    if( ade->value != 0 )
-         return QString::fromLocal8Bit( ade->value );
-     else
-         return QString();
-@@ -254,7 +282,7 @@ QString K3bFFMpegFile::author() const
-     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "ARTIST", NULL, 0 );
-     if( ade == NULL )
-         return QString();
--    if( ade->value != '\0' )
-+    if( ade->value != 0 )
-         return QString::fromLocal8Bit( ade->value );
-     else
-         return QString();
-@@ -267,7 +295,7 @@ QString K3bFFMpegFile::comment() const
-     AVDictionaryEntry *ade = av_dict_get( d->formatContext->metadata, "COMMENT", NULL, 0 );
-     if( ade == NULL )
-         return QString();
--    if( ade->value != '\0' )
-+    if( ade->value != 0 )
-         return QString::fromLocal8Bit( ade->value );
-     else
-         return QString();
-@@ -325,26 +353,36 @@ int K3bFFMpegFile::fillOutputBuffer()
-             return 0;
-         }
- 
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+        int gotFrame = 0;
-+        int len = ::avcodec_decode_audio4(
-+#else
-         d->outputBufferPos = d->alignedOutputBuffer;
-         d->outputBufferSize = AVCODEC_MAX_AUDIO_FRAME_SIZE;
--
--#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO3
-+#  ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO3
-         int len = ::avcodec_decode_audio3(
--#else
--#  ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO2
--        int len = ::avcodec_decode_audio2(
- #  else
-+#    ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO2
-+        int len = ::avcodec_decode_audio2(
-+#    else
-         int len = ::avcodec_decode_audio(
-+#    endif
- #  endif
- #endif
- 
-             FFMPEG_CODEC(d->formatContext->streams[0]),
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+            d->frame,
-+            &gotFrame,
-+            &d->packet );
-+#else
-             (short*)d->alignedOutputBuffer,
-             &d->outputBufferSize,
--#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO3
-+#  ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO3
-             &d->packet );
--#else
-+#  else
-             d->packetData, d->packetSize );
-+#  endif
- #endif
- 
-         if( d->packetSize <= 0 || len < 0 )
-@@ -354,6 +392,17 @@ int K3bFFMpegFile::fillOutputBuffer()
-             return -1;
-         }
- 
-+#ifdef HAVE_FFMPEG_AVCODEC_DECODE_AUDIO4
-+        if ( gotFrame ) {
-+            d->outputBufferSize = ::av_samples_get_buffer_size(
-+                NULL,
-+                FFMPEG_CODEC(d->formatContext->streams[0])->channels,
-+                d->frame->nb_samples,
-+                FFMPEG_CODEC(d->formatContext->streams[0])->sample_fmt,
-+                1 );
-+            d->outputBufferPos = reinterpret_cast<char*>( d->frame->data[0] );
-+        }
-+#endif
-         d->packetSize -= len;
-         d->packetData += len;
-     }
-@@ -419,9 +468,9 @@ K3bFFMpegFile* K3bFFMpegWrapper::open( c
-         // mp3 being one of them sadly. Most importantly: allow the libsndfile decoder to do
-         // its thing.
-         //
--        if( file->type() == CODEC_ID_WMAV1 ||
--            file->type() == CODEC_ID_WMAV2 ||
--            file->type() == CODEC_ID_AAC )
-+        if( file->type() == AV_CODEC_ID_WMAV1 ||
-+            file->type() == AV_CODEC_ID_WMAV2 ||
-+            file->type() == AV_CODEC_ID_AAC )
- #endif
-             return file;
-     }
+ extern "C" {
+ /*
+  Recent versions of FFmepg uses C99 constant macros which are not presebt in C++ standard.
