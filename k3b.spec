@@ -4,7 +4,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Epoch:		6
-Version:	 17.12.2
+Version:	 18.04.2
 %if "%{git}" != ""
 Release:	1.%{git}.1
 Source0:	%{name}-%git.tar.xz
@@ -26,11 +26,11 @@ BuildRequires:	pkgconfig(flac++)
 BuildRequires:	pkgconfig(flac)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(mad)
-BuildRequires:	pkgconfig(polkit-qt-1)
+BuildRequires:	pkgconfig(polkit-qt5-1)
 BuildRequires:	pkgconfig(sndfile)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	pkgconfig(taglib)
-BuildRequires:	pkgconfig(libmusicbrainz)
+BuildRequires:	pkgconfig(libmusicbrainz5)
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(Qt5Core)
