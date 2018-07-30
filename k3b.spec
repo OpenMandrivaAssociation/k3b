@@ -1,16 +1,15 @@
-# Taken from kf5 branch in git://anongit.kde.org/k3b.git
+%define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 %define git %{nil}
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Epoch:		6
-Version:	 18.04.2
+Version:	18.07.80
 %if "%{git}" != ""
-Release:	1.%{git}.1
+Release:	0.%{git}.1
 Source0:	%{name}-%git.tar.xz
 %else
 Release:	1
-Source0:	http://download.kde.org/stable/applications/%{version}/src/%{name}-%version.tar.xz
+Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
 %endif
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
