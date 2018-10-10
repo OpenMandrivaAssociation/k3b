@@ -3,7 +3,7 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	18.08.1
+Version:	18.08.2
 %if "%{git}" != ""
 Release:	1.%{git}.1
 Source0:	%{name}-%git.tar.xz
