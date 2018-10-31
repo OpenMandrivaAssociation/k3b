@@ -8,7 +8,7 @@ Version:	18.08.2
 Release:	1.%{git}.1
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	1
+Release:	2
 Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
 %endif
 Source100:	%{name}.rpmlintrc
