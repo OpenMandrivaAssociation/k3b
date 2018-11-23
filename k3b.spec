@@ -3,12 +3,12 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	18.08.2
+Version:	18.08.3
 %if "%{git}" != ""
 Release:	1.%{git}.1
 Source0:	%{name}-%git.tar.xz
 %else
-Release:	2
+Release:	1
 Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
 %endif
 Source100:	%{name}.rpmlintrc
