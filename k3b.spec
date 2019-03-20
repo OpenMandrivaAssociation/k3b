@@ -1,16 +1,10 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
-%define git %{nil}
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Version:	18.12.3
-%if "%{git}" != ""
-Release:	1.%{git}.1
-Source0:	%{name}-%git.tar.xz
-%else
-Release:	1
+Release:	2
 Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
-%endif
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
@@ -117,11 +111,7 @@ Development libraries from %{name}
 %{_libdir}/libk3b*.so
 
 %prep
-%if "%{git}" != ""
-%setup -q -n %{name}-%{git}
-%else
 %setup -q
-%endif
 %apply_patches
 %cmake_kde5
 
