@@ -2,7 +2,7 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	19.08.3
+Version:	19.11.90
 Release:	1
 Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
@@ -97,11 +97,11 @@ programs and configuring devices.
 %{_datadir}/kxmlgui5/k3b
 %{_datadir}/mime/packages/x-k3b.xml
 %{_datadir}/solid/actions/k3b*
-%{_sysconfdir}/xdg/k3b*
 %{_libdir}/libexec/k3bhelper
 %{_datadir}/dbus-1/system-services/org.kde.k3b.service
 %{_datadir}/dbus-1/system.d/org.kde.k3b.conf
 %{_datadir}/polkit-1/actions/org.kde.k3b.policy
+%{_datadir}/knsrcfiles/k3btheme.knsrc
 
 %package devel
 Group:		Development/KDE and Qt
