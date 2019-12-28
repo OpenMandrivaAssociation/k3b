@@ -2,9 +2,9 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	19.11.90
+Version:	19.12.0
 Release:	1
-Source0:	http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%version.tar.xz
+Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
@@ -116,7 +116,7 @@ Development libraries from %{name}
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 %cmake_kde5
 
 %build
