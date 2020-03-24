@@ -1,5 +1,6 @@
---- k3b-17.04.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.omv~	2017-07-07 23:46:45.470428442 +0200
-+++ k3b-17.04.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2017-07-07 23:47:11.014876576 +0200
+diff -up k3b-20.03.80/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.2~ k3b-20.03.80/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
+--- k3b-20.03.80/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.2~	2020-03-24 01:40:25.729405475 +0100
++++ k3b-20.03.80/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2020-03-24 01:41:48.951426948 +0100
 @@ -17,6 +17,16 @@
  
  #include <config-k3b.h>
@@ -16,4 +17,4 @@
 +
  extern "C" {
  /*
-  Recent versions of FFmepg uses C99 constant macros which are not presebt in C++ standard.
+  Recent versions of FFmpeg uses C99 constant macros which are not present in C++ standard.
