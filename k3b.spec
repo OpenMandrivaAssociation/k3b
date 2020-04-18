@@ -2,8 +2,8 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	20.03.90
-Release:	2
+Version:	20.04.0
+Release:	1
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
