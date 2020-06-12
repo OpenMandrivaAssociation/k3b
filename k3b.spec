@@ -2,7 +2,7 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	20.04.1
+Version:	20.04.2
 Release:	1
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
@@ -76,7 +76,7 @@ provide an easily usable interface. Features include burning
 audio CDs from .WAV and .MP3 audio files, configuring external
 programs and configuring devices.
 
-%files -f all.lang
+%files -f k3b.lang
 %{_bindir}/k3b
 %{_libdir}/lib*.so.7*
 %{_libdir}/qt5/plugins/k3b*.so
@@ -124,8 +124,4 @@ Development libraries from %{name}
 
 %install
 %ninja_install -C build
-%find_lang k3b --with-html
-%find_lang kio_videodvd
-%find_lang libk3b
-%find_lang libk3bdevice
-cat *.lang >all.lang
+%find_lang k3b --with-html --all-name
