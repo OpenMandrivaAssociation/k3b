@@ -3,7 +3,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Version:	20.04.2
-Release:	1
+Release:	2
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
@@ -59,6 +59,8 @@ BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	shared-mime-info
 BuildRequires:	cmake(KF5Cddb)
+BuildRequires:	lame-devel
+BuildRequires:	libmpcdec-devel
 Requires:	cdrskin
 Requires:	cdrecord
 Requires:	mkisofs
