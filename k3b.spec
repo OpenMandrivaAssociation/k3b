@@ -103,6 +103,7 @@ programs and configuring devices.
 %{_datadir}/dbus-1/system.d/org.kde.k3b.conf
 %{_datadir}/knsrcfiles/k3btheme.knsrc
 %{_libdir}/libexec/kauth/k3bhelper
+%{_datadir}/polkit-1/actions/org.kde.k3b.policy
 
 %package devel
 Group:		Development/KDE and Qt
