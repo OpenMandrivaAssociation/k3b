@@ -2,7 +2,7 @@
 
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
-Version:	21.04.2
+Version:	21.07.90
 Release:	1
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
@@ -81,7 +81,7 @@ programs and configuring devices.
 %files -f k3b.lang
 %{_bindir}/k3b
 %{_libdir}/lib*.so.7*
-%{_libdir}/qt5/plugins/k3b*.so
+%{_libdir}/qt5/plugins/k3b
 %{_libdir}/qt5/plugins/kcm_*.so
 %{_libdir}/qt5/plugins/kf5/kio/videodvd.so
 %{_datadir}/metainfo/org.kde.k3b.appdata.xml
@@ -92,9 +92,7 @@ programs and configuring devices.
 %{_datadir}/knotifications5/k3b.notifyrc
 %{_datadir}/konqsidebartng/virtual_folders/services/videodvd.desktop
 %{_datadir}/kservices5/ServiceMenus/k3b*.desktop
-%{_datadir}/kservices5/k3b*.desktop
 %{_datadir}/kservices5/kcm*.desktop
-%{_datadir}/kservices5/videodvd.protocol
 %{_datadir}/kservicetypes5/k3bplugin.desktop
 %{_datadir}/kxmlgui5/k3b
 %{_datadir}/mime/packages/x-k3b.xml
