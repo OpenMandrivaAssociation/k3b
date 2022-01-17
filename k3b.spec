@@ -3,7 +3,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Version:	21.12.1
-Release:	1
+Release:	2
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
@@ -11,6 +11,7 @@ Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 Patch7:		k3b-ffmpeg3.patch
+Patch8:		k3b-21.12.1-ffmpeg-5.0.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(ogg)
@@ -115,8 +116,7 @@ Development libraries from %{name}
 %{_libdir}/libk3b*.so
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 %cmake_kde5
 
 %build
