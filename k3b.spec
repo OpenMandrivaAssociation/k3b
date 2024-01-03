@@ -3,7 +3,7 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Version:	23.08.4
-Release:	1
+Release:	2
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
