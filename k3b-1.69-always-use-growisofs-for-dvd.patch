@@ -1,0 +1,12 @@
+--- k3b/libk3b/jobs/k3bmetawriter.cpp.0003~	2014-02-11 21:44:00.470432768 +0100
++++ k3b/libk3b/jobs/k3bmetawriter.cpp	2014-02-11 21:45:52.376429942 +0100
+@@ -319,7 +319,8 @@ bool K3b::MetaWriter::determineUsedAppAn
+             }
+             else if( mediaType & Device::MEDIA_DVD_ALL ) {
+                 // wodim (at least on fedora) doesn't do DVDs all that well, use growisofs instead
+-                if ( cdrecordWodim ) {
++		// growisofs is usually also better than cdrecord, so...
++                if ( 1 /*cdrecordWodim*/ ) {
+                     d->usedWritingApp = WritingAppGrowisofs;
+                 }
+                 else {
