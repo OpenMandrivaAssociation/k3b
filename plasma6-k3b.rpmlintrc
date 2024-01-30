@@ -1,0 +1,4 @@
+# We want to allow the "libraries" to go into the application package
+# because they're really tied to k3b and not useful for anything else
+addFilter("E: incoherent-version-in-name")
+addFilter("E: executable-in-library-package")
