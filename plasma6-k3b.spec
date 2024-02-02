@@ -2,8 +2,8 @@
 
 Summary:	CD-Burner for Plasma 6
 Name:		plasma6-k3b
-Version:	24.01.90
-Release:	3
+Version:	24.01.95
+Release:	1
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/k3b-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
