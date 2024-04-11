@@ -3,12 +3,13 @@
 Summary:	CD-Burner for Plasma 5
 Name:		k3b
 Version:	23.08.5
-Release:	2
+Release:	3
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%version.tar.xz
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
+Patch1:         k3b-23.08.5-ffmpeg7.patch
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
@@ -30,9 +31,7 @@ BuildRequires:	cmake(Qt5DBus)
 BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	cmake(Qt5Test)
 BuildRequires:	cmake(Qt5Network)
-BuildRequires:	cmake(Qt5WebKit)
 BuildRequires:	cmake(Qt5Widgets)
-BuildRequires:	cmake(Qt5WebKitWidgets)
 BuildRequires:	cmake(Qt5)
 BuildRequires:	cmake(KF5Archive)
 BuildRequires:	cmake(KF5Config)

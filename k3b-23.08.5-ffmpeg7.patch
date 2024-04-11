@@ -1,0 +1,28 @@
+--- k3b-23.08.5/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.orig	2024-04-11 12:58:04.579339115 +0100
++++ k3b-23.08.5/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2024-04-11 12:59:19.888726405 +0100
+@@ -140,7 +140,7 @@
+ 
+     d->sampleFormat = d->codecContext->sample_fmt;
+     d->isSpacious = ::av_sample_fmt_is_planar(d->sampleFormat) &&
+-        d->codecContext->channels > 1;
++        d->codecContext->ch_layout.nb_channels > 1;
+     d->packet = ::av_packet_alloc();
+ 
+     // dump some debugging info
+@@ -156,7 +156,6 @@
+     ::av_packet_free(&d->packet);
+ 
+     if( d->codec ) {
+-        ::avcodec_close(d->codecContext);
+         d->codec = nullptr;
+         ::avcodec_free_context(&d->codecContext);
+         d->codecContext = nullptr;
+@@ -185,7 +184,7 @@
+ 
+ int K3bFFMpegFile::channels() const
+ {
+-    return d->codecContext->channels;
++    return d->codecContext->ch_layout.nb_channels;
+ }
+ 
+ 
