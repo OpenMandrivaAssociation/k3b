@@ -5,7 +5,7 @@
 
 Summary:	CD-Burner for Plasma 6
 Name:		plasma6-k3b
-Version:	24.02.2
+Version:	24.05.0
 Release:	%{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/multimedia/k3b/-/archive/%{gitbranch}/k3b-%{gitbranchd}.tar.bz2#/k3b-%{git}.tar.bz2
@@ -16,7 +16,6 @@ Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://k3b.sourceforge.net/
-Patch1:		k3b-23.08.5-ffmpeg7.patch
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
