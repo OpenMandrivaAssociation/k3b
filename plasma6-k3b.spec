@@ -5,7 +5,7 @@
 
 Summary:	CD-Burner for Plasma 6
 Name:		plasma6-k3b
-Version:	24.05.0
+Version:	24.05.1
 Release:	%{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/multimedia/k3b/-/archive/%{gitbranch}/k3b-%{gitbranchd}.tar.bz2#/k3b-%{git}.tar.bz2
