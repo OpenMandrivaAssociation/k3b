@@ -15,7 +15,7 @@ Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/k3b-%v
 Source100:	%{name}.rpmlintrc
 License:	GPLv2+
 Group:		Archiving/Cd burning
-Url:		http://k3b.sourceforge.net/
+Url:		https://k3b.sourceforge.net/
 Patch3:		k3b-1.69-always-use-growisofs-for-dvd.patch
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(dvdread)
