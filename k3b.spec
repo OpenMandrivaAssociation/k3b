@@ -4,7 +4,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Summary:	CD-Burner for Plasma 6
-Name:		plasma6-k3b
+Name:		k3b
 Version:	25.04.0
 Release:	%{?git:0.%{git}.}1
 %if 0%{?git:1}
