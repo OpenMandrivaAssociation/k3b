@@ -5,7 +5,7 @@
 
 Summary:	CD-Burner for Plasma 6
 Name:		k3b
-Version:	25.04.0
+Version:	25.04.3
 Release:	%{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/multimedia/k3b/-/archive/%{gitbranch}/k3b-%{gitbranchd}.tar.bz2#/k3b-%{git}.tar.bz2
@@ -78,6 +78,11 @@ Requires:	dvd+rw-tools
 Obsoletes:	%mklibname k3blib 6
 Obsoletes:	%mklibname k3bdevice 6
 
+%rename plasma6-k3b
+
+BuildSystem:	cmake
+BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+
 %description
 K3b is CD-writing software which intends to be feature-rich and
 provide an easily usable interface. Features include burning
@@ -117,17 +122,3 @@ Development libraries from %{name}
 %files devel
 %{_includedir}/*
 %{_libdir}/libk3b*.so
-
-%prep
-%autosetup -p1 -n k3b-%{?git:%{gitbranchd}}%{!?git:%{version}}
-%cmake \
-	-DQT_MAJOR_VERSION=6 \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja -C build
-
-%install
-%ninja_install -C build
-%find_lang k3b --with-html --all-name
