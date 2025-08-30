@@ -1,0 +1,11 @@
+diff -up k3b-25.08.0/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.omv~ k3b-25.08.0/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
+--- k3b-25.08.0/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.omv~	2025-08-30 02:14:33.559060288 +0200
++++ k3b-25.08.0/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2025-08-30 02:14:43.916435126 +0200
+@@ -161,7 +161,6 @@ void K3bFFMpegFile::close()
+     ::av_packet_free(&d->packet);
+ 
+     if( d->codec ) {
+-        ::avcodec_close(d->codecContext);
+         d->codec = nullptr;
+         ::avcodec_free_context(&d->codecContext);
+         d->codecContext = nullptr;
